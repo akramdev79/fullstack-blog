@@ -1,4 +1,4 @@
-import express, { json }  from "express";
+import express from "express";
 import chalk from "chalk";
 import { port } from "./config/config.js";
 import  userRouter  from "./routes/User.js";
@@ -15,11 +15,13 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-
-
 app.use('/api/user', userRouter);
 app.use('/api/customer', customerRouter);
 app.use('/api/consultant', consultantRouter);
+
+app.get("/", (req, res) => {
+    res.send("hello world");
+});
 
 
 app.listen(port, () => {
